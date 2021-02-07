@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  minio:
+    image: minio/minio:RELEASE.2019-10-12T01-39-57Z
+    restart: always
+    ports:
+      - 9000:9000
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_API_SELECT_PARQUET: ${MINIO_API_SELECT_PARQUET}
+    volumes:
+      - ${DATADIR}/minio/data:/data
+      - ${DATADIR}/minio/config:/root/.minio
+      - ./scripts:/scripts
+    # command: server /data
+    entrypoint: /bin/sh
+    command: scripts/init.sh
+
+networks: 
+  
+  default: 
+    external: 
+      name: datafuel-local-network
