@@ -2,4 +2,4 @@
 mkdir /data/datalake-bucket
 mkdir /data/landing-bucket
 
-minio server /data
+minio server --console-address :$CONSOLE_PORT /data

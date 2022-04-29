@@ -8,10 +8,13 @@ services:
     restart: always
     ports:
       - 9000:9000
+      - $CONSOLE_PORT:$CONSOLE_PORT
+      - 33831:33831
     environment:
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
-      MINIO_API_SELECT_PARQUET: ${MINIO_API_SELECT_PARQUET}
+      MINIO_ROOT_USER: $MINIO_ROOT_USER
+      MINIO_ROOT_PASSWORD: $MINIO_ROOT_PASSWORD
+      MINIO_API_SELECT_PARQUET: $MINIO_API_SELECT_PARQUET
+      CONSOLE_PORT: $CONSOLE_PORT
     volumes:
       - ${DATADIR}/minio/data:/data
       - ${DATADIR}/minio/config:/root/.minio
