@@ -1,5 +1,5 @@
 #!/bin/sh
-mkdir /data/datalake-bucket
-mkdir /data/landing-bucket
+mkdir /data/datalakebucket
+mkdir /data/landingbucket
 
 minio server --console-address :$CONSOLE_PORT /data
